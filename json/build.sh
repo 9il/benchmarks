@@ -12,6 +12,8 @@ cargo build --manifest-path json.rs/Cargo.toml --release && \
 dmd -ofjson_d -O -release -inline test.d
 gdc -o json_d_gdc -O3 -frelease -finline test.d
 ldc2 -ofjson_d_ldc -O5 -release test.d
+dub build --compiler=dmd --build=release-nobounds --single test_asdf.d && mv json_d_asdf json_d_asdf_dmd
+dub build --compiler=ldmd2 --build=release-nobounds --single test_asdf.d && mv json_d_asdf json_d_asdf_ldc
 nim c -o:json_nim_gcc -d:release --cc:gcc --verbosity:0 test.nim
 nim c -o:json_nim_clang -d:release --cc:clang --verbosity:0 test.nim
 go build -o json_go test.go
